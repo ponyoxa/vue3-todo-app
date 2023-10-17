@@ -1,7 +1,7 @@
 import { InjectionKey, reactive, readonly } from "vue";
 import { Todo, TodoState, TodoStore, Params } from "@/store/todo/types";
 
-// ①
+// 仮データ
 const mockTodo: Todo[] = [
   {
     id: 1,
@@ -29,12 +29,12 @@ const mockTodo: Todo[] = [
   },
 ];
 
-// ②
+// リアクティブデータの宣言
 const state = reactive<TodoState>({
   todos: mockTodo,
 });
 
-// ③
+// 新規作成TODOの初期化
 const initializeTodo = (todo: Params) => {
   const date = new Date();
   return {
@@ -47,7 +47,6 @@ const initializeTodo = (todo: Params) => {
   } as Todo;
 };
 
-// ④
 const getTodo = (id: number) => {
   const todo = state.todos.find((todo) => todo.id === id);
   if (!todo) {
@@ -56,12 +55,10 @@ const getTodo = (id: number) => {
   return todo;
 };
 
-// ⑤
 const addTodo = (todo: Params) => {
   state.todos.push(initializeTodo(todo));
 };
 
-// ⑥
 const updateTodo = (id: number, todo: Todo) => {
   const index = state.todos.findIndex((todo) => todo.id === id);
   if (index === -1) {
@@ -70,7 +67,6 @@ const updateTodo = (id: number, todo: Todo) => {
   state.todos[index] = todo;
 };
 
-// ⑦
 const deleteTodo = (id: number) => {
   state.todos = state.todos.filter((todo) => todo.id !== id);
 };
@@ -85,5 +81,4 @@ const todoStore: TodoStore = {
 
 export default todoStore;
 
-// ⑧
 export const todoKey: InjectionKey<TodoStore> = Symbol("todo");
