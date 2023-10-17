@@ -1,6 +1,6 @@
-import { DeepReadonly } from "vue";
+import { DeepReadonly } from 'vue'
 
-export type Status = "waiting" | "working" | "completed" | "pending";
+export type Status = 'waiting' | 'working' | 'completed' | 'pending';
 
 export interface Todo {
   id: number;
@@ -15,7 +15,7 @@ export interface TodoState {
   todos: Todo[];
 }
 
-export type Params = Pick<Todo, "title" | "description" | "status">;
+export type Params = Pick<Todo, 'title' | 'description' | 'status'>;
 
 export interface TodoStore {
   state: DeepReadonly<TodoState>;
