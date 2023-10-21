@@ -1,8 +1,9 @@
-import { Todo } from '@/store/todo/types'
+import { Params, Todo } from '@/store/todo/types'
 import { TodoClientInterface } from './types'
 
 export class TodoClient implements TodoClientInterface {
-  getAll () {
+  async getAll () {
+    await new Promise((resolve) => setTimeout(resolve, 3000))
     return Promise.resolve(
       Object.keys(localStorage)
         .filter((key) => !isNaN(Number(key)))
